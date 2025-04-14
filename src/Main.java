@@ -8,7 +8,7 @@ public class Main {
 
         int opcao = -1;
 
-        while (opcao != 10) {
+        while (opcao != 12) {
             System.out.println("\n-----------------------------------------");
             System.out.println("Olá, bem-vindo ao sistema!!");
             System.out.println(
@@ -21,7 +21,9 @@ public class Main {
                             "\n7 - Ordenar elementos de forma decrescente" +
                             "\n8 - Limpar a lista inteira" +
                             "\n9 - Mostrar a lista" +
-                            "\n10 - Encerrar o sistema"
+                            "\n10 - Mostrar o primeiro elemento da lista." +
+                            "\n11 - Mostrar o último da lista." +
+                            "\n12 - Encerrar o sistema"
             );
             System.out.println("-----------------------------------------");
             System.out.print("Por gentileza, escolha uma das opções para operar o sistema:");
@@ -39,7 +41,7 @@ public class Main {
                 case 2:
                     System.out.print("Quantos elementos deseja inserir? ");
                     int qtd = scanner.nextInt();
-                    scanner.nextLine(); // limpar buffer
+                    scanner.nextLine();
                     Object[] valores = new Object[qtd];
                     for (int i = 0; i < qtd; i++) {
                         System.out.print("Digite o elemento " + (i + 1) + ": ");
@@ -57,7 +59,7 @@ public class Main {
                 case 4:
                     System.out.print("Quantos elementos deseja remover? ");
                     int qtdRemover = scanner.nextInt();
-                    scanner.nextLine(); // limpar buffer
+                    scanner.nextLine();
                     Object[] removerSeq = new Object[qtdRemover];
                     for (int i = 0; i < qtdRemover; i++) {
                         System.out.print("Digite o elemento " + (i + 1) + ": ");
@@ -91,9 +93,14 @@ public class Main {
                     break;
 
                 case 10:
+                    System.out.println(listaDinamica.obterPrimeiroElemento().getConteudo());
+                    break;
+                case 11:
+                    System.out.println(listaDinamica.obterUltimoElemento().getConteudo());
+                    break;
+                case 12:
                     System.out.println("Encerrando o sistema...");
                     break;
-
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
                     break;
