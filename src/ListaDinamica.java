@@ -45,24 +45,40 @@ public class ListaDinamica implements IListaDinamica {
     public boolean removerElemento(Object elemento) {
         if (estaVazia()) {
             System.out.println("Não há elementos na lista.");
-        } else if (buscarElemento(elemento)) {
-            if (this.primeiroElemento.getConteudo().equals(elemento)) {
-                this.primeiroElemento = this.primeiroElemento.getProx();
-            } else {
-                No aux = this.primeiroElemento;
-
-                while(aux != null){
-                    if(aux.getProx().getConteudo() != elemento) {
-                        aux.setProx(aux.getProx().getProx());
-                    }
-                        aux = aux.getProx();
-                }
-            }
-        } else {
-            System.out.println("O elemento buscado para apagar, não existe.");
+            return false;
         }
+
+        if (primeiroElemento.getConteudo().equals(elemento)) {
+            primeiroElemento = primeiroElemento.getProx();
+            if (primeiroElemento != null) {
+                primeiroElemento.setAnterior(null);
+            } else {
+                ultimoElemento = null;
+            }
+            return true;
+        }
+
+        No aux = primeiroElemento;
+
+        while (aux.getProx() != null) {
+            if (aux.getProx().getConteudo().equals(elemento)) {
+                No removido = aux.getProx();
+                aux.setProx(removido.getProx());
+
+                if (removido.getProx() != null) {
+                    removido.getProx().setAnterior(aux);
+                } else {
+                    ultimoElemento = aux;
+                }
+                return true;
+            }
+            aux = aux.getProx();
+        }
+
+        System.out.println("O elemento buscado para apagar não existe.");
         return false;
     }
+
 
 
     @Override
